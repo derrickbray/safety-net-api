@@ -23,4 +23,11 @@ Route.resource('/api/users', 'UserController')
   .only(['index', 'show', 'update', 'destroy'])
   .middleware('auth');
 
+Route.resource('/api/pledges', 'PledgeController')
+  .only(['index', 'show']);
+
+Route.resource('/api/pledges', 'PledgeController')
+  .only(['store', 'update', 'destroy'])
+  .middleware('auth');
+
 Route.post('/api/token-auth', 'SessionController.store');
