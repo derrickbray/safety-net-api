@@ -6,6 +6,15 @@ const attributes = ['name', 'description', 'contact-info', 'end-date', 'deleted-
 class PledgeController {
 
   * index(request, response) {
+    if (request.input('mine')) {
+      const user = yield request.auth.getUser();
+
+      const pledges = yield Pledge.with('user')
+        .where({ user_id: user.id })
+        .fetch();
+
+      return response.jsonApi('Pledge', pledges);
+    }
     const pledges = yield Pledge.with('user').fetch();
 
     response.jsonApi('Pledge', pledges);
