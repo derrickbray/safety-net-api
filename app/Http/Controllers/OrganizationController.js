@@ -3,6 +3,20 @@
 const Organization = use('App/Model/Organization');
 const attributes = ['name', 'address', 'phone', 'website', 'lat', 'lng'];
 
+const NodeGeocoder = require('node-geocoder');
+const Env = use('Env');
+
+const options = {
+  provider: 'google',
+
+  // Optional depending on the providers
+  httpAdapter: 'https', // Default
+  apiKey: Env.get('GOOGLE_API_KEY'), // for Mapquest, OpenCage, Google Premier
+  formatter: null,         // 'gpx', 'string', ...
+};
+
+const geocoder = NodeGeocoder(options);
+
 class OrganizationController {
 
   * index(request, response) {
@@ -16,6 +30,11 @@ class OrganizationController {
     const foreignKeys = {
       user_id: request.jsonApi.getRelationId('user'),
     };
+    const [result] = yield geocoder.geocode(`${input.address} Nashville`);
+
+    input.lat = result.latitude;
+    input.lng = result.longitude;
+
     const organization = yield Organization.create(Object.assign({}, input, foreignKeys));
 
     response.jsonApi('Organization', organization);
