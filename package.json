@@ -28,6 +28,7 @@
     "adonis-lucid": "^3.0.10",
     "adonis-middleware": "^1.0.8",
     "adonis-validation-provider": "^3.0.4",
+    "node-geocoder": "^3.15.1",
     "pg": "^6.1.0",
     "sqlite3": "^3.1.8",
     "underscore": "^1.8.3",
