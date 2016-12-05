@@ -26,6 +26,9 @@ Route.resource('/api/users', 'UserController')
 Route.resource('/api/pledges', 'PledgeController')
   .only(['index', 'show']);
 
+Route.resource('/api/organizations', 'OrganizationController')
+  .except(['create', 'edit']);
+
 Route.resource('/api/pledges', 'PledgeController')
   .only(['store', 'update', 'destroy'])
   .middleware('auth');
