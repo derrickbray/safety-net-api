@@ -10,7 +10,7 @@ class UserController {
   get createRules() {
     return {
       email: 'required|email|unique:users',
-      password: 'required|confirmed',
+      password: 'required',
     };
   }
 
