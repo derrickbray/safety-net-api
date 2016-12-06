@@ -8,7 +8,7 @@ class Organization extends JsonApiView {
   user() {
     return this.belongsTo('App/Http/JsonApiViews/User', {
       included: true,
-      excludeRelation: 'organizations'
+      excludeRelation: 'organization',
     });
   }
 

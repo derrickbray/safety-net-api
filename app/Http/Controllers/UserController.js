@@ -24,7 +24,7 @@ class UserController {
     if (request.input('current')) {
       return response.jsonApi('User', request.authUser);
     }
-    const users = yield User.with().fetch();
+    const users = yield User.with('organization').fetch();
 
     response.jsonApi('User', users);
   }
@@ -44,7 +44,7 @@ class UserController {
 
   * show(request, response) {
     const id = request.param('id');
-    const user = yield User.with().where({ id }).firstOrFail();
+    const user = yield User.with('organization').where({ id }).firstOrFail();
 
     response.jsonApi('User', user);
   }
@@ -57,7 +57,7 @@ class UserController {
     const foreignKeys = {
     };
 
-    const user = yield User.with().where({ id }).firstOrFail();
+    const user = yield User.with('organization').where({ id }).firstOrFail();
     user.fill(Object.assign({}, input, foreignKeys));
     yield user.save();
 
