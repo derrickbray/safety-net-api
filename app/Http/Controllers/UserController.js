@@ -3,7 +3,8 @@
 const User = use('App/Model/User');
 
 const Hash = use('Hash');
-const attributes = ['email', 'password', 'password-confirmation'];
+const storeAttributes = ['email', 'password', 'password-confirmation'];
+const updateAttributes = ['email', 'is-approved', 'is-admin'];
 
 class UserController {
 
@@ -30,7 +31,7 @@ class UserController {
   }
 
   * store(request, response) {
-    const input = request.jsonApi.getAttributesSnakeCase(attributes);
+    const input = request.jsonApi.getAttributesSnakeCase(storeAttributes);
 
     yield request.jsonApi.assertValid(input, this.createRules, this.createMessages);
 
@@ -53,7 +54,7 @@ class UserController {
     const id = request.param('id');
     request.jsonApi.assertId(id);
 
-    const input = request.jsonApi.getAttributesSnakeCase(attributes);
+    const input = request.jsonApi.getAttributesSnakeCase(updateAttributes);
     const foreignKeys = {
     };
 

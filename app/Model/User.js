@@ -21,6 +21,8 @@ class User extends Lucid {
     return [
       'email',
       'password',
+      'is_approved',
+      'is_admin',
     ];
   }
 
