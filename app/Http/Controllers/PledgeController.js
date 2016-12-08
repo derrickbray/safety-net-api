@@ -43,7 +43,7 @@ class PledgeController {
 
     const input = request.jsonApi.getAttributesSnakeCase(attributes);
     const foreignKeys = {
-      user_id: request.jsonApi.getRelationId('user'),
+      // user_id: request.jsonApi.getRelationId('user'),
     };
 
     const pledge = yield Pledge.with('user').where({ id }).firstOrFail();
