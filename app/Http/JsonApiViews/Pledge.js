@@ -2,7 +2,7 @@ const JsonApiView = require('adonis-jsonapi/src/JsonApiView');
 
 class Pledge extends JsonApiView {
   get attributes() {
-    return ['name', 'description', 'contact_info', 'end_date', 'deleted_at', 'is_claimed'];
+    return ['name', 'description', 'contact_info', 'end_date', 'deleted_at', 'is_claimed', 'is_approved'];
   }
 
   user() {

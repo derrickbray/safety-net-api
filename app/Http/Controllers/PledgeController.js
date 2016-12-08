@@ -1,7 +1,15 @@
 'use strict';
 
 const Pledge = use('App/Model/Pledge');
-const attributes = ['name', 'description', 'contact-info', 'end-date', 'deleted-at'];
+const attributes = [
+  'name',
+  'description',
+  'contact-info',
+  'end-date',
+  'deleted-at',
+  'is-approved',
+  'is-claimed',
+];
 
 class PledgeController {
 
