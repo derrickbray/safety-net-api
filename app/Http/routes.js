@@ -28,6 +28,8 @@ Route.resource('/api/pledges', 'PledgeController')
 
 Route.resource('/api/organizations', 'OrganizationController')
   .except(['create', 'edit']);
+Route.resource('/api/categories', 'CategoryController')
+  .except(['create', 'edit']);
 
 Route.resource('/api/pledges', 'PledgeController')
   .only(['store', 'update', 'destroy'])
