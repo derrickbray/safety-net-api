@@ -12,6 +12,13 @@ class Organization extends JsonApiView {
     });
   }
 
+  categories() {
+    return this.hasMany('App/Http/JsonApiViews/Category', {
+      included: true,
+      excludeRelation: 'organizations',
+    });
+  }
+
 }
 
 module.exports = Organization;

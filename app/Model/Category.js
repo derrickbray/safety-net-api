@@ -1,13 +1,13 @@
-'use strict'
+'use strict';
 
-const Lucid = use('Lucid')
+const Lucid = use('Lucid');
 
 class Category extends Lucid {
 
 
   organizations() {
-    return this.hasMany('App/Model/Organization', 'id', 'category_id');
+    return this.belongsToMany('App/Model/Organization');
   }
 }
 
-module.exports = Category
+module.exports = Category;

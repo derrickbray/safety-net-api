@@ -2,6 +2,9 @@
   "name": "adonis-app",
   "version": "3.1.0",
   "main": "server.js",
+  "engines": {
+    "node": "7.2.1"
+  },
   "scripts": {
     "dev": "nodemon --watch app --watch bootstrap --watch config --watch .env -x node server.js",
     "start": "node server.js",
@@ -20,11 +23,11 @@
   "dependencies": {
     "adonis-ace": "^3.0.4",
     "adonis-auth": "^1.0.4",
-    "adonis-commands": "^2.1.2",
+    "adonis-commands": "rtablada/adonis-commands#feature/key-echo",
     "adonis-fold": "^3.0.3",
     "adonis-framework": "^3.0.5",
     "adonis-generators": "^0.6.1",
-    "adonis-jsonapi": "^0.6.0",
+    "adonis-jsonapi": "^0.7.0",
     "adonis-lucid": "^3.0.10",
     "adonis-middleware": "^1.0.8",
     "adonis-validation-provider": "^3.0.4",

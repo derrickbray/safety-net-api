@@ -20,7 +20,7 @@ const geocoder = NodeGeocoder(options);
 class OrganizationController {
 
   * index(request, response) {
-    const organizations = yield Organization.with('user').fetch();
+    const organizations = yield Organization.with('user', 'categories').fetch();
 
     response.jsonApi('Organization', organizations);
   }
@@ -42,7 +42,7 @@ class OrganizationController {
 
   * show(request, response) {
     const id = request.param('id');
-    const organization = yield Organization.with('user').where({ id }).firstOrFail();
+    const organization = yield Organization.with('user', 'categories').where({ id }).firstOrFail();
 
     response.jsonApi('Organization', organization);
   }
@@ -56,9 +56,14 @@ class OrganizationController {
       user_id: request.jsonApi.getRelationId('user'),
     };
 
-    const organization = yield Organization.with('user').where({ id }).firstOrFail();
+    const categoryIds = request.jsonApi.getRelationId('categories');
+
+    const organization = yield Organization.with('user', 'categories').where({ id }).firstOrFail();
     organization.fill(Object.assign({}, input, foreignKeys));
     yield organization.save();
+    yield organization.categories().sync(categoryIds);
+
+    yield organization.related('categories').load();
 
     response.jsonApi('Organization', organization);
   }
