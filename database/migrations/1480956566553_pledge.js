@@ -13,7 +13,7 @@ class PledgeSchema extends Schema {
       table.integer('user_id').references('users.id');
       table.date('end_date');
       table.timestamp('deleted_at');
-      table.timestamps();
+      table.timestamps('timestamp');
     });
   }
 
