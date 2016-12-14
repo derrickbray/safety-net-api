@@ -20,7 +20,19 @@ const geocoder = NodeGeocoder(options);
 class OrganizationController {
 
   * index(request, response) {
-    const organizations = yield Organization.with('user', 'categories').fetch();
+    const query = Organization.with('user', 'categories');
+
+    if (request.input('category')) {
+      const ids = yield Organization.query()
+        .select('organizations.id as id')
+        .join('category_organization', 'category_organization.organization_id', 'organizations.id')
+        .join('categories', 'category_organization.category_id', 'categories.id')
+        .whereIn('categories.name', request.input('category'));
+
+      query.whereIn('id', ids.map(i => i.id));
+    }
+
+    const organizations = yield query.fetch();
 
     response.jsonApi('Organization', organizations);
   }
